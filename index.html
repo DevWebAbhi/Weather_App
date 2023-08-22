@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <link rel="icon" type="image/x-icon" href="./download.png">
+    <title>Weather</title>
+ <style>
+  html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+    body{
+      background-size: cover;  
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      
+  overflow: hidden; /* Hide scrollbars */
+
+    }
+    #bgrd{
+        
+    }
+    #parent{
+        width: 98%;
+        display: flex;
+        min-height: 300px;
+       
+        gap: 5% 5%;
+       padding: 15px;
+       margin: auto;
+      
+    }
+    #parent>div:first-child{
+      width: 35%;
+    }
+    #parent>div{
+       
+       
+       padding: 15px;
+    }
+    header{
+      width: 98%;
+      min-height: 45px;
+      padding: 10px;
+     border-radius: 5px;
+     margin:auto;
+     display:flex;
+      background-color: rgb(245, 245, 245);
+    }
+    header>form{
+      display: flex;
+      width: 35%;
+    }
+    header>form>input:first-child{
+      font-size: medium;
+     min-height: 35px;
+      width: 80%;
+    }
+    header>form>input:nth-child(2){
+      min-height: 35px;
+      width: 30%;
+      background-color: gray;
+      color: white;
+      font-weight: 550;
+      border-radius: 0px 10px 10px 0px;
+      border: transparent;
+    }
+   h2,h1,p{
+    margin-bottom: -10px;
+    padding: 3px;
+   }
+   #date{
+    color: rgb(238, 101, 101);
+    font-size: large;
+    font-weight: 550;
+    font-family: serif;
+   }
+   #map{
+    
+    width: 45%;
+   max-height: 200px;
+  border: transparent;
+   
+    margin-top: 2%;
+    margin-bottom: 0;
+   }
+
+   header>button:nth-child(2){
+    margin-left: 15%;
+    padding: 1px;
+    font-size: large;
+    font-weight: 550;
+    background-color: silver;
+    color: whitesmoke;
+    border: transparent;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+   }
+   header>button:nth-child(2):hover{
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+   }
+   #forcast{
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    border: transparent;
+    margin: auto;
+    width: 35%;
+    margin: auto;
+    text-align: center;
+    font-weight: 550;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+   }
+
+   #forcast img{
+    display: block;
+    margin: auto;
+   }
+
+   @media screen and (max-width: 850px) {
+  #parent{
+    display: block;
+    margin: auto;
+    width: max-content;
+   
+  }
+  body{
+    width: 100%;
+  }
+  
+  #parent>div:first-child{
+    width: max-content;
+    margin: auto;
+  }
+  #map{
+    width: max-content;
+  }
+  #forcast{
+    width: max-content;
+    padding-left: 0;
+    padding-right: 0;
+    font-weight: 300;
+    font-size: 1em;
+  }
+  
+}
+@media screen and (max-width: 499px) {
+  header{
+    font-size: 1rem;
+    
+   height: auto;
+   display: flex;
+   justify-content: space-between;
+   min-height: auto;
+   padding: 5px;
+
+  }
+  
+  header>form>input:first-child,header>form>input:nth-child(2){
+    
+    
+  }
+  header>form{
+    width: max-content;
+   
+  }
+  header>button:nth-child(2){
+   
+    
+   
+    padding: 3%;
+    font-size: 1.0em;
+    text-align: center;
+    margin-left: 0;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    height: 100%; 
+    width: 100%;
+}
+
+}
+ </style>
+</head>
+<body>
+
+<header>
+  <form >
+    <input type="text" placeholder="Enter City Name" id="ipt">
+    <input type="submit" id="submit" value="Search">
+  </form>
+  <button id="currentLocation"></i></button>
+</header>
+
+    <div id="parent">
+        <div id="info">
+          <p id="date"></p>
+          <h1 id="place"></h1>
+          
+          <div id="temprature">
+            <h2></h2>
+          </div>
+          <p>Feels Like <span id="ftemprature"></span>°C. <span id="feel1"></span>. <span id="feel2"></span>.</p>
+          <p>➤ <span id="speed"></span>&nbsp; &nbsp; <span id="degree"></span></p>
+          <p><span id="humidity"></span>&nbsp;<span id="pressure"></span></p>
+          <p id="visibility"></p>
+        </div>
+        <div id="map"></div>
+    </div>
+    <div id="forcast"></div>
+</body>
+</html>
+<script>
+  
+  
+  window.onload = ()=>{
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }
+let city="Delhi";
+
+let latitude="",longitude="";
+forcast(city);
+place(city);
+document.querySelector("form").addEventListener("submit", function(){
+  event.preventDefault();
+  let place1=document.getElementById("ipt").value;
+  if(place1!=""){
+     location2(place1);
+  }
+  console.log("hii");
+});
+
+
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 75000,
+};
+
+function success(pos) {
+  const crd = pos.coords;
+  latitude=crd.latitude;
+  longitude=crd.longitude;
+  loading();
+  setTimeout(()=>{
+    location2();
+  },4000);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+
+
+
+document.getElementById("currentLocation").addEventListener("click",function(){
+  navigator.geolocation.getCurrentPosition(success, error, options);
+});
+
+
+async function location2(place1){
+  try{
+   
+   let process = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
+    let data=await process.json();
+    if(data!=undefined){
+      city=data.address.city;
+    }
+    if(place1!=undefined || place1){
+      city=place1;
+    }
+    place(city);
+    weatherDetails(city);
+    maping(city);
+    dateDetails();
+    forcast(city);
+     }catch(err){
+    console.log(err);
+  }
+}
+
+
+
+loading();
+setTimeout(()=>{
+  location2();
+  setTimeout(()=>{
+  maping(city);
+  
+},2000)
+},5000)
+
+
+function maping(city){
+  document.querySelector("#map").innerHTML="";
+  let iframe=document.createElement("iframe");
+    iframe.src=`https://maps.google.com/maps?q=${city}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+   iframe.style.width="100%";
+   iframe.style.height="100%";
+   iframe.style.border="transparent";
+   iframe.style.borderRadius="5px";
+   iframe.style.boxShadow="rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset";
+
+   document.querySelector("#map").append(iframe);
+}
+   
+function loading(){
+  let parentLoader=document.querySelector("#map");
+
+  let loder=`<iframe src="https://giphy.com/embed/UOdoMz3baCENO" width="100%" max-height="350" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p></p>`
+  
+parentLoader.innerHTML=loder;
+}
+
+let months={
+  0:"Jun",
+  1:"Feb",
+  2:"Mar",
+  3:"Apr",
+  4:"May",
+  5:"June",
+  6:"July",
+  7:"Aug",
+  8:"Sep",
+  9:"oct",
+  10:"Nov",
+  11:"Dec"
+};  
+
+dateDetails();
+setInterval(()=>{
+  dateDetails();
+},1000);
+
+
+function place(placeName){
+  document.getElementById("place").innerText=placeName;
+}
+
+function dateDetails(){
+  const d = new Date();
+
+let dateTime=months[d.getMonth()]+" "+d.getDate()+", "+ d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+document.getElementById("date").innerText=dateTime;
+}
+
+weatherDetails(city);
+async function weatherDetails(city){
+  try{
+    let process = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=0c3e2480a501484760e3c5270c91e1d9`);
+      let data = await process.json();
+      document.querySelector("#temprature>h2").innerText=Math.round(Number(data.main.temp-273.15))+"°C";
+      document.querySelector("#ftemprature").innerText=Math.round(Number(data.main.feels_like-273.15));
+      document.querySelector("#feel1").innerText=data.weather[0].main;
+      document.querySelector("#feel2").innerText=data.weather[0].description;
+      document.querySelector("#speed").innerText=data.wind.speed +"Km/s   ";
+      document.querySelector("#degree").innerText="☮ "+data.wind.deg+"hPa";
+      document.querySelector("#humidity").innerText="Humidity: "+data.main.humidity+"%  ";
+      document.querySelector("#pressure").innerText="Pressure: "+data.main.pressure;
+      document.querySelector("#visibility").innerText="Visibility: "+data.visibility;
+  }catch(err){
+
+  }
+}
+
+
+
+function forcast(place){
+  fetch(
+    `https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=b036480ecabf49a189cb2b5c6feeadac&units=metric`
+  )
+    .then((Response) => Response.json())
+    .then((data1) => {
+      document.querySelector("#forcast").innerHTML="";
+      if (data1.cod == 200) {
+
+        data1.list.forEach((el,idx) => {
+          if(idx<=25){
+            const weather1 = el.weather[0];
+          const temp1=Math.round(el.main.temp)+"°C";
+          const date=el.dt_txt;
+          console.log(months[Number(date.substring(5,8))-1],(date.substring(5,7)));
+          const div1=document.createElement("div");
+
+          const pdate=document.createElement("p");
+
+          pdate.innerHTML=`${date.substring(8,11)},`+ months[Number(date.substring(5,7))-1] ;
+           const ptemp=document.createElement("p");
+           ptemp.innerHTML=`temp: ${temp1}`;
+
+           const icon = document.createElement("img");
+          icon.id = "weather-icon";
+          icon.src = `https://openweathermap.org/img/w/${weather1.icon}.png`;
+          console.log(weather1.icon);
+          div1.append(temp1,icon,pdate);
+          div1.style.padding="5px";
+          console.log(date.substring(10,13));
+          if(el.dt_txt.substring(10,13)==15){
+          document.querySelector("#forcast").append(div1);
+          }
+          }
+          
+        });
+    }
+});
+}
+
+
+function myFunction(x) {
+  document.querySelector("header>button:nth-child(2)").innerHTML = null;
+  document.querySelector("header>button:nth-child(2)").innerText=null;
+  if (x.matches) { // If media query matches
+    document.querySelector("header>button:nth-child(2)").innerHTML = `<i class="fa-solid fa-location-dot fa-bounce">`;
+  } else {
+    document.querySelector("header>button:nth-child(2)").innerText = "➤ Current Location";
+  }
+}
+
+var x = window.matchMedia("(max-width: 500px)")
+myFunction(x)
+x.addListener(myFunction)
+
+
+
+</script>
+<script src="https://kit.fontawesome.com/f13837cae9.js" crossorigin="anonymous"></script>
