@@ -27,6 +27,11 @@ Welcome to the repository of my Weather App website project. This application pr
 2. Enter a location in the search bar to view weather information.
 3. Explore the current conditions and the forecast for the upcoming days.
 
+# Deployed Link
+
+1. Link: `https://weatherapp-devwebabhi.vercel.app/`   
+   
+
 ## Contributing
 
 Contributions are welcome! If you find issues or want to improve the project, please submit a pull request.
