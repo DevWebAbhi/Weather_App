@@ -220,7 +220,8 @@
     <div id="forcast"></div>
 </body>
 </html>
-<script>
+<script type="module">
+  
   
   
   window.onload = ()=>{
@@ -358,7 +359,7 @@ document.getElementById("date").innerText=dateTime;
 weatherDetails(city);
 async function weatherDetails(city){
   try{
-    let process = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=0c3e2480a501484760e3c5270c91e1d9`);
+    let process = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=YOURAPIKEYFOR_OPEN_WEATHER`);
       let data = await process.json();
       document.querySelector("#temprature>h2").innerText=Math.round(Number(data.main.temp-273.15))+"°C";
       document.querySelector("#ftemprature").innerText=Math.round(Number(data.main.feels_like-273.15));
