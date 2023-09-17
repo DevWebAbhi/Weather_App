@@ -29,7 +29,7 @@ Welcome to the repository of my Weather App website project. This application pr
 
 # Deployed Link
 
-1. Link: `https://weatherapp-devwebabhi.vercel.app/`   
+1. Link: https://weatherapp-devwebabhi.vercel.app/   
    
 
 ## Contributing
